@@ -35,4 +35,16 @@ WORKDIR /root/Arduino
 
 COPY libraries/ /root/Arduino/libraries
 
+ENV BOARD=esp32:esp32:esp32
+
+ENV PORT=/dev/ttyUSB0
+
+COPY scripts/compile.sh /usr/local/bin/compile
+
+COPY scripts/upload.sh /usr/local/bin/upload
+
+RUN chmod +x \
+   /usr/local/bin/compile \
+   /usr/local/bin/upload
+
 ENTRYPOINT [ "arduino-cli" ]
